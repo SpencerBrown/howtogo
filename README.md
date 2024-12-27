@@ -3,11 +3,19 @@
 # Getting on GitHub
 
 Sign up for a free account, and implement two-factor authentication for your login.
-For git command access, set up an SSH key for your GitHub account. 
+For git command access, set up an SSH key for your GitHub account. Set up your `~/.ssh/config` file to use it. For example, if the SSH key is `github-personal`:
+
+```
+Host github-personal
+	HostName github.com
+        IdentityFile ~/.ssh/github-personal
+        User git
+```
+
 Then redirect https:// git commands to ssh in your git config:
 
 ```bash
-git config --global url.ssh://git@github.com/.insteadOf https://github.com/
+git config --global url.ssh://github-personal/.insteadOf=https://github.com/
 ```
 
 you don't need a credential helper with SSH access. Nor personal access tokens. 
